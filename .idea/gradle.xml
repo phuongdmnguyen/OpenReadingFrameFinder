@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../spring-frameworks" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../spring-frameworks" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/buildSrc" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/framework-bom" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/integration-tests" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-aop" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-aspects" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-beans" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-context" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-context-indexer" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-context-support" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-core" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-core/kotlin-coroutines" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-expression" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-instrument" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-jcl" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-jdbc" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-jms" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-messaging" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-orm" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-oxm" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-test" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-tx" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-web" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-webflux" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-webmvc" />
+            <option value="$PROJECT_DIR$/../spring-frameworks/spring-websocket" />
+          </set>
+        </option>
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

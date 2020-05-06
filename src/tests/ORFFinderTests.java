@@ -34,13 +34,35 @@ public class ORFFinderTests {
         assertEquals(results, model.getAminoAcid());
     }
 
+
     @Test
-    public void testORFNoSkip() {
+    public void testORFNoSkipSmall() {
         model.setRnaSequence("CCCAUGCCCUAG");
+        assertEquals(12, model.getRnaSequence().length());
         HashMap<String, String> resultsMap = model.findORF();
         results = "AUGCCCUAG";
-        assertEquals("", resultsMap.get("oneSkip"));
+        assertEquals("No valid ORF found", resultsMap.get("oneSkip"));
         assertEquals(results, resultsMap.get("noSkip"));
-        assertEquals("", resultsMap.get("twoSkip"));
+        assertEquals("No valid ORF found", resultsMap.get("twoSkip"));
+    }
+
+    @Test
+    public void testORF1SkipSmall() {
+        model.setRnaSequence("CCCCAUGCCCUAG");
+        HashMap<String, String> resultsMap = model.findORF();
+        results = "AUGCCCUAG";
+        assertEquals(results, resultsMap.get("oneSkip"));
+        assertEquals("No valid ORF found", resultsMap.get("noSkip"));
+        assertEquals("No valid ORF found", resultsMap.get("twoSkip"));
+    }
+
+    @Test
+    public void testORF2SkipSmall() {
+        model.setRnaSequence("CCCCCAUGCCCUAG");
+        HashMap<String, String> resultsMap = model.findORF();
+        results = "AUGCCCUAG";
+        assertEquals("No valid ORF found", resultsMap.get("oneSkip"));
+        assertEquals("No valid ORF found", resultsMap.get("noSkip"));
+        assertEquals(results, resultsMap.get("twoSkip"));
     }
 }

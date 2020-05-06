@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jpa-archive">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../spring-frameworks/spring-orm/src/test/resources/org/springframework/orm/jpa/jpa-archive.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

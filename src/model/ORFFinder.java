@@ -100,9 +100,6 @@ public class ORFFinder {
         results.put("noSkip", ORFNoSkip());
         results.put("oneSkip", ORF1Skip());
         results.put("twoSkip", ORF2Skip());
-        System.out.println(results.get("oneSkip"));
-        System.out.println(results.get("noSkip"));
-        System.out.println(results.get("twoSkip"));
         return results;
     }
 
@@ -111,30 +108,42 @@ public class ORFFinder {
      * @return ORF no skip of original sequence, empty string otherwise
      */
     private String ORFNoSkip() {
-        String orf = "";
+        return ORFabstract(rnaSequence);
+    }
+
+
+    private String ORF1Skip() {
+        String sequence = rnaSequence.substring(1);
+        return ORFabstract(sequence);
+    }
+
+
+    private String ORF2Skip() {
+        String sequence = rnaSequence.substring(2);
+        return ORFabstract(sequence);
+    }
+
+    /**
+     * Abstract function for ORF finder
+     */
+    private String ORFabstract(String sequence) {
         String startCodon = "";
         int indexStart = 0; // index of last base in start codon
         int indexSto = 0;
         boolean found = false;
-        for (int i = 0; i < rnaSequence.length(); i++) {
-            if (i % 3 == 0) {
-                startCodon += rnaSequence.charAt(i);
-                orf += rnaSequence.charAt(i);
+        for (int i = 0; i < sequence.length(); i++) {
+            if (i % 3 == 0 || i % 3 == 1) {
+                startCodon += sequence.charAt(i);
             }
-            if (i % 3 == 1) {
-                startCodon += rnaSequence.charAt(i);
-                orf += rnaSequence.charAt(i);
-            }
-            //check if we've found a start codon
-            //if yes -> substring from start codon and check the rest if there's a stop codon
+            //check if we've found a start codon if yes -> substring from start
+            // codon and check the rest if there's a stop codon
             if (i % 3 == 2) {
-                startCodon += rnaSequence.charAt(i);
-                orf += rnaSequence.charAt(i);
+                startCodon += sequence.charAt(i);
                 if (isStartCodon(startCodon)) {
                     indexStart = i;
-                    int indexStop = checkORF(rnaSequence.substring(i));
+                    int indexStop = checkORF(sequence);
                     indexSto = indexStop;
-                    if (isStopCodon(rnaSequence.substring(indexStop-2, indexStop + 1))) {
+                    if (isStopCodon(sequence.substring(indexStop-2, indexStop + 1))) {
                         found = true;
                         break;
                     }
@@ -143,10 +152,10 @@ public class ORFFinder {
             }
         }
         if (found) {
-            return orf.substring(indexStart-2, indexSto);
+            return sequence.substring(indexStart-2, indexSto + 1);
         }
         else {
-            return "";
+            return "No valid ORF found";
         }
     }
 
@@ -159,7 +168,7 @@ public class ORFFinder {
     private int checkORF(String sequence) {
         String curr = "";
         boolean hasStop = false;
-        int baseIndex = 0;
+        int baseIndex = -1;
         for (int i = 0; i < sequence.length(); i++) {
             switch (i % 3) {
                 case 0:
@@ -171,9 +180,9 @@ public class ORFFinder {
                     if (isStopCodon(curr)) {
                         hasStop = true;
                         baseIndex = i;
-                        break;
                     }
                     curr = "";
+                    break;
                 }
              if (hasStop) {
                  break;
@@ -182,88 +191,6 @@ public class ORFFinder {
         return baseIndex;
     }
 
-    private String ORF1Skip() {
-        String sequence = rnaSequence.substring(1);
-        String orf = "";
-        String startCodon = "";
-        int indexStart = 0; // index of last base in start codon
-        int indexSto = 0;
-        boolean found = false;
-        for (int i = 0; i < sequence.length(); i++) {
-            if (i % 3 == 0) {
-                startCodon += sequence.charAt(i);
-                orf += sequence.charAt(i);
-            }
-            if (i % 3 == 1) {
-                startCodon += sequence.charAt(i);
-                orf += sequence.charAt(i);
-            }
-            //check if we've found a start codon
-            //if yes -> substring from start codon and check the rest if there's a stop codon
-            if (i % 3 == 2) {
-                startCodon += sequence.charAt(i);
-                orf += sequence.charAt(i);
-                if (isStartCodon(startCodon)) {
-                    indexStart = i;
-                    int indexStop = checkORF(sequence.substring(i));
-                    indexSto = indexStop;
-                    if (isStopCodon(sequence.substring(indexStop-2, indexStop + 1))) {
-                        found = true;
-                        break;
-                    }
-                }
-                startCodon = "";
-            }
-        }
-        if (found) {
-            return orf.substring(indexStart-2, indexSto);
-        }
-        else {
-            return "";
-        }
-    }
-
-
-    private String ORF2Skip() {
-        String sequence = rnaSequence.substring(2);
-        String orf = "";
-        String startCodon = "";
-        int indexStart = 0; // index of last base in start codon
-        int indexSto = 0;
-        boolean found = false;
-        for (int i = 0; i < sequence.length(); i++) {
-            if (i % 3 == 0) {
-                startCodon += sequence.charAt(i);
-                orf += sequence.charAt(i);
-            }
-            if (i % 3 == 1) {
-                startCodon += sequence.charAt(i);
-                orf += sequence.charAt(i);
-            }
-            //check if we've found a start codon
-            //if yes -> substring from start codon and check the rest if there's a stop codon
-            if (i % 3 == 2) {
-                startCodon += sequence.charAt(i);
-                orf += sequence.charAt(i);
-                if (isStartCodon(startCodon)) {
-                    indexStart = i;
-                    int indexStop = checkORF(sequence.substring(i));
-                    indexSto = indexStop;
-                    if (isStopCodon(sequence.substring(indexStop-2, indexStop + 1))) {
-                        found = true;
-                        break;
-                    }
-                }
-                startCodon = "";
-            }
-        }
-        if (found) {
-            return orf.substring(indexStart-2, indexSto);
-        }
-        else {
-            return "";
-        }
-    }
 
 
     /**
@@ -272,7 +199,7 @@ public class ORFFinder {
      * @return true if codon is a start codon
      */
     private boolean isStartCodon(String codon) {
-        return codon == "AUG";
+        return codon.equals("AUG");
     }
 
     /**
@@ -281,7 +208,7 @@ public class ORFFinder {
      * @return true if codon is a start codon
      */
     private boolean isStopCodon(String codon) {
-        return codon == "UAA" || codon == "UAG" || codon == "UGA";
+        return codon.equals("UAA") || codon.equals("UAG")|| codon.equals("UGA");
     }
 
 

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../spring-frameworks/spring-core/build/libs/spring-objenesis-repack-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../spring-frameworks/spring-core/build/libs/spring-core-5.2.4.BUILD-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../spring-frameworks/spring-core/build/libs/spring-cglib-repack-3.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

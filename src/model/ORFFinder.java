@@ -13,7 +13,12 @@ public class ORFFinder {
         rnaSequence = "";
         aminoAcid = "";
     }
-        public String getDnaSequence() {
+
+    public ORFFinder(String dnaSequence) {
+        this.dnaSequence = dnaSequence;
+    }
+
+    public String getDnaSequence() {
             return dnaSequence;
         }
 
@@ -70,22 +75,6 @@ public class ORFFinder {
         return -1;
     }
 
-    public void translateRNA() {
-        String codon = "";
-        int baseIndex = 0;
-        for (int i = 0; i < rnaSequence.length(); i++) {
-            if (i % 3 == 0) {
-                baseIndex = getBaseIndex(rnaSequence.charAt(i)) * 16;
-            }
-            if (i % 3 == 1) {
-                baseIndex += getBaseIndex(rnaSequence.charAt(i));
-            }
-            if (i % 3 == 2) {
-                baseIndex += getBaseIndex(rnaSequence.charAt(i)) * 4;
-                aminoAcid = getAminoAcid() + codon_table_1_letter[baseIndex];
-            }
-        }
-    }
 
     /**
      * Look for an open reading frame in RNA
@@ -93,7 +82,7 @@ public class ORFFinder {
      * and ends with a stop codon within an rna sequence
      *
      * method: no skip, skip 1, skip 2
-     * @return A list of possible ORF in strings, empty string if no ORF is found
+     * @return A HashMap of possible ORF in strings, empty string if no ORF is found
      */
     public HashMap<String, String> findORF() {
         HashMap<String, String> results = new HashMap<>();
@@ -104,20 +93,23 @@ public class ORFFinder {
     }
 
     /**
-     *
      * @return ORF no skip of original sequence, empty string otherwise
      */
     private String ORFNoSkip() {
         return ORFabstract(rnaSequence);
     }
 
-
+    /**
+     * @return ORF with skipping 1st base of original sequence, empty string otherwise
+     */
     private String ORF1Skip() {
         String sequence = rnaSequence.substring(1);
         return ORFabstract(sequence);
     }
 
-
+    /**
+     * @return ORF 2 skips of original sequence, empty string otherwise
+     */
     private String ORF2Skip() {
         String sequence = rnaSequence.substring(2);
         return ORFabstract(sequence);
@@ -135,8 +127,6 @@ public class ORFFinder {
             if (i % 3 == 0 || i % 3 == 1) {
                 startCodon += sequence.charAt(i);
             }
-            //check if we've found a start codon if yes -> substring from start
-            // codon and check the rest if there's a stop codon
             if (i % 3 == 2) {
                 startCodon += sequence.charAt(i);
                 if (isStartCodon(startCodon)) {
@@ -155,7 +145,7 @@ public class ORFFinder {
             return sequence.substring(indexStart-2, indexSto + 1);
         }
         else {
-            return "No valid ORF found";
+            return "";
         }
     }
 
@@ -191,7 +181,22 @@ public class ORFFinder {
         return baseIndex;
     }
 
-
+    public void translateRNA() {
+        String codon = "";
+        int baseIndex = 0;
+        for (int i = 0; i < rnaSequence.length(); i++) {
+            if (i % 3 == 0) {
+                baseIndex = getBaseIndex(rnaSequence.charAt(i)) * 16;
+            }
+            if (i % 3 == 1) {
+                baseIndex += getBaseIndex(rnaSequence.charAt(i));
+            }
+            if (i % 3 == 2) {
+                baseIndex += getBaseIndex(rnaSequence.charAt(i)) * 4;
+                aminoAcid = getAminoAcid() + codon_table_1_letter[baseIndex];
+            }
+        }
+    }
 
     /**
      *
@@ -211,10 +216,6 @@ public class ORFFinder {
         return codon.equals("UAA") || codon.equals("UAG")|| codon.equals("UGA");
     }
 
-
-    public void translateCodon(String codon) {
-
-    }
 
     /** This is the codon_table being used to translate a codon into an amino acid
      * that is abbreviated in its 3-letter code.
@@ -247,6 +248,13 @@ public class ORFFinder {
 
     };
 
+    /** This is the codon_table being used to translate a codon into an amino acid
+     * that is abbreviated in its 1-letter code.
+     * Has four blocks, representing different first base.
+     * Blocks have first base in this order (top to bottom): U, C, A G
+     *Each row in each block has a different second base (top to bottom): U C A G
+     * Each column in each block has a different third base (left to right): U C A G
+     */
     final static String[] codon_table_1_letter = {
             // U      C     A       G        3rd
             "F", "S", "Y", "C",    // U

@@ -14,9 +14,6 @@ public class ORFFinder {
         aminoAcid = "";
     }
 
-    public ORFFinder(String dnaSequence) {
-        this.dnaSequence = dnaSequence;
-    }
 
     public String getDnaSequence() {
             return dnaSequence;
@@ -182,7 +179,6 @@ public class ORFFinder {
     }
 
     public void translateRNA() {
-        String codon = "";
         int baseIndex = 0;
         for (int i = 0; i < rnaSequence.length(); i++) {
             if (i % 3 == 0) {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":spring-expression:testFixtures" external.linked.project.path="$MODULE_DIR$/../../../../spring-frameworks/spring-expression" external.root.project.path="$MODULE_DIR$/../../../../spring-frameworks" external.system.id="GRADLE" external.system.module.group="org.springframework" external.system.module.type="sourceSet" external.system.module.version="5.2.4.BUILD-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../../spring-frameworks/spring-expression/build/classes/java/testFixtures" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../spring-frameworks/spring-expression/src/testFixtures" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="spring.spring-expression.main" />
+    <orderEntry type="module" module-name="spring.spring-core.main" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../spring-frameworks/spring-core/build/libs/spring-cglib-repack-3.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../spring-frameworks/spring-core/build/libs/spring-objenesis-repack-3.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="spring.spring-jcl.main" />
+  </component>
+</module>

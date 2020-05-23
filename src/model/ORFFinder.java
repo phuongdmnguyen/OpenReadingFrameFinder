@@ -43,16 +43,16 @@ public class ORFFinder {
         for (int i = 0; i < dnaSequence.length(); i++) {
             switch (dnaSequence.charAt(i)) {
                 case 'A':
-                    rnaSequence = getRnaSequence() + 'U';
-                    break;
-                case 'T':
                     rnaSequence = getRnaSequence() + 'A';
                     break;
+                case 'T':
+                    rnaSequence = getRnaSequence() + 'U';
+                    break;
                 case 'C':
-                    rnaSequence = getRnaSequence() + 'G';
+                    rnaSequence = getRnaSequence() + 'C';
                     break;
                 case 'G':
-                    rnaSequence = getRnaSequence() + 'C';
+                    rnaSequence = getRnaSequence() + 'G';
                     break;
             }
         }

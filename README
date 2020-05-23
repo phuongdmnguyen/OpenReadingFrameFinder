@@ -1,5 +1,5 @@
 This is an open reading frame finder
-- It reads a simple text file that contains a DNA sequence written from 3' to 5'
+- It reads a simple text file that contains a DNA sequence 
 - It then transribes said sequence into mRNA and find potential open reading frames and return them into the same text file
 
 TODO:
